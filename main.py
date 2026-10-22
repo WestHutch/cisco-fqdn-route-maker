@@ -10,8 +10,8 @@ import json
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--resetCredentials", help="Reset your saved username and password", action="store_true")
-    parser.add_argument("--resetIPs", help="Reset your saved host and destination IP addresses. DO NOT USE WITH keepRoutes", action="store_true")
-    parser.add_argument("--keepRoutes", help="Keep your previously made static routes from this script, even if no longer in DNS record, JSON file is still overwritten. DO NOT USE WITH resetIPs", action="store_true")
+    parser.add_argument("--resetIPs", help="Reset your saved host and destination IP addresses", action="store_true")
+    parser.add_argument("--keepRoutes", help="Keep your previously made static routes from this script, even if no longer in DNS record, JSON file is still overwritten. Do not use if changing destination IP", action="store_true")
     args = parser.parse_args()
 
     if args.resetCredentials:
