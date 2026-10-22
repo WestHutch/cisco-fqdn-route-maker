@@ -24,13 +24,15 @@ def get_ips():
     load_dotenv(ENV_PATH)
     host = os.getenv('HOST')
     destination = os.getenv('DESTINATION')
+    fqdn = os.getenv('FQDN')
 
-    if not all([host, destination]):
+    if not all([host, destination, fqdn]):
         return None
     
     return({
         "host": host,
-        "destination": destination
+        "destination": destination,
+        "fqdn": fqdn
     })
 
 
@@ -51,14 +53,17 @@ def save_credentials():
 
 def save_ips():
     host = input("Enter the host switch IP: ").strip()
-    destination = input("Enter the destination IP: ").strip()
+    destination = input("Enter the route destination IP: ").strip()
+    fqdn = input("Enter the FQDN that you would like to forward: ").strip()
     set_key(str(ENV_PATH), "HOST", host)
     set_key(str(ENV_PATH), "DESTINATION", destination)
+    set_key(str(ENV_PATH), "FQDN", fqdn)
     
-    if not host or not destination:
+    if not host or not destination or not fqdn:
         raise ValueError("Host IP and destination IP are required.")
 
     return({
             "host": host,
-            "destination": destination
+            "destination": destination,
+            "fqdn": fqdn
     })
