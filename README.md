@@ -90,7 +90,7 @@ Note: If no changes have been made to the DNS records since your last run, the p
 | -------- | ------- |
 | --resetCredentials  | Reset your saved username and password    |
 | --resetIPs | Reset your saved host and next hop IP addresses     |
-| --keepRoutes    | Keep your previously made static routes from this script. Even if no longer in DNS records, JSON file is still overwritten. Do not use if changing next hop IP    |
+| --keepRoutes    | Keep your previously made static routes from this script, even if no longer in DNS records. JSON file is still overwritten. Do not use if changing next hop IP    |
 
 
 ⚠️ Warning: Using `--keepRoutes` while changing the next hop IP with `--resetIPs` can lead to multiple static routes for the same source IPs.
