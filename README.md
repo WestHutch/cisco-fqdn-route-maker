@@ -2,39 +2,39 @@
 > A Python CLI tool that resolves an FQDN to its DNS A records and manages corresponding static routes on a Cisco switch. Automatically removes outdated routes and adds routes for newly resolved IP addresses.
 
 ## Requirements
-* Python 3.x
+* Python 3.9 or greater
 * Cisco switch with SSH configured
 * Working DNS resolution
 
 ## Setup
 
-1. Download this repo and save it to a location of your choice
+1. Download this repo, and extract the zip to a location of your choice.
 2. In the CLI, navigate to this folder then setup a virtual environment with the following commands:
 
-```
-py -m venv .venv
-.venv\Scripts\activate.bat
-```
+| Windows (Command Prompt)    | Mac/Linux |
+| -------- | ------- |
+| `py -m venv .venv`<br/>`.venv\Scripts\activate.bat`  | `python3 -m venv .venv`<br/>`source .venv/bin/activate`    |
 
-3. Install the required packages
-
-```
-pip install -r .\requirements.txt
-```
-
-4. Run the program
+3. Install the required packages.
 
 ```
-py main.py
+pip install -r requirements.txt
 ```
+
+4. Run the program.
+> Note: some systems may use py, python, or python3 to execute Python scripts.
+
+| Windows (Command Prompt)    | Mac/Linux |
+| -------- | ------- |
+| `py main.py`  | `python3 main.py`    |
 
 ## Quickstart
 
 For subsequent uses, simply navigate to the project in the CLI and run the following:
-```
-.venv\Scripts\activate.bat
-py main.py
-```
+
+| Windows (Command Prompt)    | Mac/Linux |
+| -------- | ------- |
+| `.venv\Scripts\activate.bat`<br/>`py main.py`  | `source .venv/bin/activate`<br/>`python3 main.py`    |
 
 ## Workflow
 
