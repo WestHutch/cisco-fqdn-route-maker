@@ -10,8 +10,8 @@ import json
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--resetCredentials", help="Reset your saved username and password", action="store_true")
-    parser.add_argument("--resetIPs", help="Reset your saved host and destination IP addresses", action="store_true")
-    parser.add_argument("--keepRoutes", help="Keep your previously made static routes from this script, even if no longer in DNS record, JSON file is still overwritten. Do not use if changing destination IP", action="store_true")
+    parser.add_argument("--resetIPs", help="Reset your saved host and next hop IP addresses", action="store_true")
+    parser.add_argument("--keepRoutes", help="Keep your previously made static routes from this script, even if no longer in DNS records. JSON file is still overwritten. Do not use if changing destination IP", action="store_true")
     args = parser.parse_args()
 
     if args.resetCredentials:
@@ -51,8 +51,9 @@ def main():
         #for each IP from FQDN, append that IP to results array
         for answer in answers:
             dnsresults.append(f"{answer}") #need to convert it to string in order to convert to json
+            print(f"Found address: {answer}")
 
-        #if json file exists or destination IP changed, remove outdated routes
+        #if json file exists or next hop IP changed, remove outdated routes
         JSON_PATH = Path(__file__).with_name("saved_records.json")
         if os.path.isfile(JSON_PATH):
             with open(JSON_PATH, "r") as json_f:
