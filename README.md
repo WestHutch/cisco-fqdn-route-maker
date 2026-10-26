@@ -88,6 +88,7 @@ Note: If no changes have been made to the DNS records since your last run, the p
 
 | Argument    | Description |
 | -------- | ------- |
+| --logging or -l  | Enable logging. Logs are deleted after 30 days.    |
 | --resetCredentials  | Reset your saved username and password    |
 | --resetIPs | Reset your saved host and next hop IP addresses     |
 | --keepRoutes    | Keep your previously made static routes from this script, even if no longer in DNS records. JSON file is still overwritten. Do not use if changing next hop IP    |
