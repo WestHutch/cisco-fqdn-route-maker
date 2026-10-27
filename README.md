@@ -45,18 +45,18 @@ For subsequent uses, simply navigate to the project in the CLI and run the follo
   * next hop IP address
   * FQDN
 
-2. Connect to the host switch.
-
-```
-Connecting...
-Connected
-```
-
-3. Resolve the FQDN to its DNS A records. These are stored in `saved_records.json`
+2. Resolve the FQDN to its DNS A records. These are stored in `saved_records.json`
 
 ```
 Found address: 1.1.1.3
 Found address: 1.1.1.4
+```
+
+3. Connect to the host switch.
+
+```
+Connecting...
+Connected
 ```
 
 4. Remove obsolete routes previously managed by the script, if applicable.
@@ -77,12 +77,13 @@ MY-SWITCH(config)#ip route 1.1.1.4 255.255.255.255 10.0.0.1
 MY-SWITCH(config)#end
 MY-SWITCH#
 Writing memory...
-Config saved.
+Building configuration...
+[OK]
 Disconnecting...
 Disconnected
 ```
 
-Note: If no changes have been made to the DNS records since your last run, the program will not make any changes to the switch.
+> Note: If no changes have been made to the DNS records since your last run, the program will not connect or make any changes to the switch.
 
 ## Arguments
 
@@ -94,7 +95,7 @@ Note: If no changes have been made to the DNS records since your last run, the p
 | --keepRoutes    | Keep your previously made static routes from this script, even if no longer in DNS records. JSON file is still overwritten. Do not use if changing next hop IP    |
 
 
-⚠️ Warning: Using `--keepRoutes` while changing the next hop IP with `--resetIPs` can lead to multiple static routes for the same source IPs.
+> ⚠️ Warning: Using `--keepRoutes` while changing the next hop IP with `--resetIPs` can lead to multiple static routes for the same source IPs.
 
 ## Failure
 Upon any failure, the program will disconnect from the switch without saving its configuration. If no DNS records were found, the connection will immediately be terminated.

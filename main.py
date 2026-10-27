@@ -68,18 +68,12 @@ def main():
 
     net_connect = None
     try:
-        #connect to switch and get IPs for FQDN
-        print("Connecting...")
-        if args.logging: logger.info("Connecting...")
-        net_connect = ConnectHandler(**SWITCH)
-        print("Connected")
-        if args.logging: logger.info("Connected")
         configChanging = False
-        answers = dns.resolver.resolve(ips_dict["fqdn"], "A", lifetime=10)
         dnsresults = []
         configSet = []
 
-        #for each IP from FQDN, append that IP to results array
+        #Get IPs for FQDN, and append each IP to results array
+        answers = dns.resolver.resolve(ips_dict["fqdn"], "A", lifetime=10)
         for answer in answers:
             dnsresults.append(f"{answer}") #need to convert it to string in order to convert to json
             print(f"Found address: {answer}")
@@ -107,9 +101,13 @@ def main():
                 configSet.append(f'ip route {dnsresult} 255.255.255.255 {ips_dict["destination"]}')
                 configChanging = True
         
-        
-        #Send commands, save
+        #Connect to switch, send commands, save
         if configChanging:
+            print("Connecting...")
+            if args.logging: logger.info("Connecting...")
+            net_connect = ConnectHandler(**SWITCH)
+            print("Connected")
+            if args.logging: logger.info("Connected")
             print("Sending commands")
             if args.logging: logger.info("Sending commands")
             cliOutput = net_connect.send_config_set(configSet)
@@ -121,6 +119,8 @@ def main():
                 if args.logging: logger.warning("Switch error. Not saving. Please check your running config")
                 raise RuntimeError("Switch reported a configuration error.")
             else:
+                print("Writing memory...")
+                if args.logging: logger.info("Writing memory...")
                 cliOutput = net_connect.send_command('write memory')
                 print(cliOutput)
                 if args.logging: logger.info(cliOutput)
