@@ -67,6 +67,7 @@ def main():
     }
 
     net_connect = None
+    connectedToSwitch = False
     try:
         configChanging = False
         dnsresults = []
@@ -108,6 +109,7 @@ def main():
             net_connect = ConnectHandler(**SWITCH)
             print("Connected")
             if args.logging: logger.info("Connected")
+            connectedToSwitch = True
             print("Sending commands")
             if args.logging: logger.info("Sending commands")
             cliOutput = net_connect.send_config_set(configSet)
@@ -140,7 +142,7 @@ def main():
         print(err)
         if args.logging: logger.error(err)
     finally:
-        if net_connect is not None:
+        if (net_connect is not None) and connectedToSwitch:
             print("Disconnecting...")
             if args.logging: logger.info("Disconnecting...")
             net_connect.disconnect()

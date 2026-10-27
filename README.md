@@ -98,5 +98,5 @@ Disconnected
 > ⚠️ Warning: Using `--keepRoutes` while changing the next hop IP with `--resetIPs` can lead to multiple static routes for the same source IPs.
 
 ## Failure
-Upon any failure, the program will disconnect from the switch without saving its configuration. If no DNS records were found, the connection will immediately be terminated.
+Upon any failure, the program will disconnect from the switch (if connected) without saving its configuration. If no DNS records were found, the program will end immediately.
 > ⚠️ Warning: If failure occurs after/during configuration, commands may still be sent to the running configuration.
