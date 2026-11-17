@@ -38,7 +38,7 @@ def main():
                         logger.info(f"Removing old log file: {log_file}")
                         log_file.unlink()
                 else:
-                    raise Exception(f"Error: Log file {log_file} does not match naming convention log_YYmmdd.log")
+                    raise Exception(f"Error: Log file {log_file} does not match naming convention log_YYYYmmdd.log")
             except Exception as err:
                 print(err)
                 logger.error(err)
