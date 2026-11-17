@@ -123,7 +123,7 @@ def main():
             else:
                 print("Writing memory...")
                 if args.logging: logger.info("Writing memory...")
-                cliOutput = net_connect.send_command('write memory')
+                cliOutput = net_connect.send_command('write memory', read_timeout=60)
                 print(cliOutput)
                 if args.logging: logger.info(cliOutput)
         else:
